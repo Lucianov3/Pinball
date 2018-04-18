@@ -28,6 +28,10 @@ public class PlayerController : MonoBehaviour
     static public Vector3 ballStartPosition;
     static public float points;
     static public List<GameObject> spinners;
+    static public GameObject target;
+    static public RollOver rollOver1;
+    static public RollOver rollOver2;
+    public static bool isResetting;
 
     private void Start()
     {
@@ -37,6 +41,10 @@ public class PlayerController : MonoBehaviour
         hingeL = flipperL.GetComponent<HingeJoint>();
         hingeR = flipperR.GetComponent<HingeJoint>();
         ballStartPosition = ball.transform.position;
+        target = GameObject.FindGameObjectWithTag("Target");
+        rollOver1 = GameObject.Find("Roll Over").GetComponent<RollOver>();
+        rollOver2 = rollOver1.otherRollOver;
+
     }
 
     void Update()
@@ -50,8 +58,7 @@ public class PlayerController : MonoBehaviour
             ballForce = Mathf.Min(maxBallForce, ballForce + Time.deltaTime);
             springPulledBack = true;
         }
-        Debug.Log(Vector3.Distance(spring.transform.position, springStartPosition));
-        if (Vector3.Distance(spring.transform.position, springStartPosition) < 8.51f)
+        if (Vector3.Distance(spring.transform.position, springStartPosition) < 8.27f)
         {
             springPulledBack = false;
             ballForce = 0;
@@ -62,6 +69,7 @@ public class PlayerController : MonoBehaviour
         }
         if (Input.GetButton("Reset"))
         {
+            StartCoroutine(BallIsResetting());
             ResetGame();
         }
         JointSpring jointSpring = new JointSpring();
@@ -71,10 +79,11 @@ public class PlayerController : MonoBehaviour
         hingeL.spring = jointSpring;
         jointSpring.targetPosition = startPositionR + pressedPositionR * rTriggerValue;
         hingeR.spring = jointSpring;
-
     }
     public static void ResetGame()
     {
+        
+        ball.SetActive(true);
         if(Points.highScore< Points.points)
         {
             Points.highScore = Points.points;
@@ -87,5 +96,17 @@ public class PlayerController : MonoBehaviour
         { 
             item.GetComponent<Spinner>().counter = 0;
         }
+        target.GetComponent<Target>().TargetReset();
+        rollOver1.on = false;
+        rollOver1.light.color = rollOver1.white;
+        rollOver2.on = false;
+        rollOver2.light.color = rollOver1.white;
+    }
+
+    IEnumerator BallIsResetting()
+    {
+        isResetting = true;
+        yield return new WaitForSeconds(2.1f);
+        isResetting = false;
     }
 }

@@ -30,7 +30,10 @@ public class Spinner : MonoBehaviour
         {
             Points.points += pointsGained;
             counter = 0;
-            StartCoroutine(BlinkinkPart());
+            if (!coroutineIsRunning)
+            {
+                StartCoroutine(BlinkinkPart());
+            }
         }
     }
 

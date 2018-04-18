@@ -40,8 +40,7 @@ public class Points : MonoBehaviour
     public static void Save()
     {
         BinaryFormatter bf = new BinaryFormatter();
-        //Application.persistentDataPath is a string, so if you wanted you can put that into debug.log if you want to know where save games are located
-        FileStream file = File.Create(Application.persistentDataPath + "/Highscore.69"); //you can call it anything you want
+        FileStream file = File.Create(Application.persistentDataPath + "/Highscore.69");
         bf.Serialize(file, highScore);
         file.Close();
     }
