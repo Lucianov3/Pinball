@@ -28,7 +28,7 @@ public class Spinner : MonoBehaviour
     {
         if(counter > 4)
         {
-            Points.points += pointsGained;
+            Points.score += pointsGained;
             counter = 0;
             if (!coroutineIsRunning)
             {

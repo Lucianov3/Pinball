@@ -23,7 +23,7 @@ public class Bumper : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         collision.rigidbody.AddForce(Vector3.Normalize(transform.position - collision.transform.position)*bumpingForce, ForceMode.Impulse);
-        Points.points += pointsGained;
+        Points.score += pointsGained;
 
         if (!coroutineIsRunning)
         {

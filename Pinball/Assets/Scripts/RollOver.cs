@@ -44,7 +44,7 @@ public class RollOver : MonoBehaviour
     {
         otherRollOver.on = false;
         on = false;
-        Points.points += 200;
+        Points.score += 200;
         yield return new WaitForSeconds(1);
         light.color = white;
         otherRollOver.light.color = white;

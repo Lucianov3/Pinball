@@ -32,7 +32,7 @@ public class Target : MonoBehaviour
         target1.isBlinking = true;
         target2.isBlinking = true;
         yield return new WaitForSeconds(0.5f);
-        Points.points += 300;
+        Points.score += 300;
         SwitchAllColors();
         yield return new WaitForSeconds(0.5f);
         SwitchAllColors();

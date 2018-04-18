@@ -84,13 +84,13 @@ public class PlayerController : MonoBehaviour
     {
         
         ball.SetActive(true);
-        if(Points.highScore< Points.points)
+        if(Points.highScore< Points.score)
         {
-            Points.highScore = Points.points;
+            Points.highScore = Points.score;
         }
         Points.Save();
         EntranceBlock.OpenEntranceBlock();
-        Points.points = 0;
+        Points.score = 0;
         ball.transform.position = ballStartPosition;
         foreach (GameObject item in spinners)
         { 

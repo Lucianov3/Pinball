@@ -24,7 +24,7 @@ public class Catapult : MonoBehaviour
 
     public IEnumerator CatapultBall(GameObject ball)
     {
-        Points.points += 500;
+        Points.score += 500;
         ball.SetActive(false);
         Rigidbody rb = ball.GetComponent<Rigidbody>();
         rb.velocity = new Vector3(0, 0, 0);

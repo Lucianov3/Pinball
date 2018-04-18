@@ -20,7 +20,7 @@ public class TriangleBumper : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         other.attachedRigidbody.AddForce(-transform.up * forceStrength,ForceMode.Impulse);
-        Points.points += pointsGained;
+        Points.score += pointsGained;
         if (!coroutineIsRunning)
         {
             StartCoroutine(BlinkinkPart());

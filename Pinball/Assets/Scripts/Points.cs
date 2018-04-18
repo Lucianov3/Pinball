@@ -6,24 +6,32 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public class Points : MonoBehaviour
 {
-    static public float points;
+    static public float score;
     static public float highScore;
+    public float newHighscore;
     public TextMesh curPointsText;
     public TextMesh highPointsText;
     string stringText;
 
     private void Start()
     {
-        Load();
+        if (newHighscore == 0)
+        {
+            Load();
+        }
+        else
+        {
+            highScore = newHighscore;
+        }
     }
     private void Update()
     {
         stringText = "";
-        for (int i = 0; i < 9-points.ToString().Length; i++)
+        for (int i = 0; i < 9-score.ToString().Length; i++)
         {
             stringText += "0";
         }
-        stringText += points;
+        stringText += score;
         curPointsText.text = stringText;
 
         stringText = "";
