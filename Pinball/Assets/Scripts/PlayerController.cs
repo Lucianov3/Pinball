@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour
     Vector3 springTargetPosition;
     static public float ballForce;
     bool springPulledBack;
+    bool gameIsPaused;
+    GameObject canvas;
     HingeJoint hingeL;
     HingeJoint hingeR;
     static public Vector3 ballStartPosition;
@@ -32,6 +34,7 @@ public class PlayerController : MonoBehaviour
     static public RollOver rollOver1;
     static public RollOver rollOver2;
     public static bool isResetting;
+    
 
     private void Start()
     {
@@ -44,7 +47,6 @@ public class PlayerController : MonoBehaviour
         target = GameObject.FindGameObjectWithTag("Target");
         rollOver1 = GameObject.Find("Roll Over").GetComponent<RollOver>();
         rollOver2 = rollOver1.otherRollOver;
-
     }
 
     void Update()
